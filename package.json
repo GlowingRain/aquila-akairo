@@ -1,16 +1,24 @@
 {
-  "name": "aquila-klasa",
+  "name": "aquila-akairo",
   "version": "1.0.0",
-  "description": "Aquila rewritten using Komada for Discord.js",
+  "description": "Aquila rewritten using Akairo for Discord.js",
   "main": "aquila.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GlowingRain/aquila-akairo.git"
+  },
   "author": "GlowingRain",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GlowingRain/aquila-akairo/issues"
+  },
+  "homepage": "https://github.com/GlowingRain/aquila-akairo#readme",
   "dependencies": {
+    "discord-akairo": "^7.5.5",
     "discord.js": "^11.4.2",
-    "dotenv": "^6.2.0",
-    "komada": "^0.21.1"
+    "dotenv": "^6.2.0"
   }
 }
