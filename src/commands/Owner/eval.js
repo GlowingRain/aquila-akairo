@@ -1,49 +1,41 @@
 const { Command } = require('discord-akairo');
+const Discord = require('discord.js');
 const hastebin = require('hastebin-gen');
 
 class EvalCommand extends Command {
     constructor() {
         super('eval', {
-            aliases: ['eval'],
-            args: [
-                {
-                    id: 'code'
-                }
-            ],
-            category: 'Owner',
+            aliases: ['eval', 'e'],
+            args: [{ id: 'code' }],
             ownerOnly: true,
-            prefix: '!#'
+            prefix: '-'
         });
     }
 
     exec(message, args) {
-
-        const clean = text => {
-            if (typeof (text) === "string")
-                return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
-            else
-                return text;
-        }
-
         try {
-            const code = args.code;
-            let evaled = eval(code);
+            let codein = args.code;
+            let code = eval(codein);
 
-            if (typeof evaled !== "string")
-                evaled = require("util").inspect(evaled);
+            if (typeof code !== 'string')
+                code = require('util').inspect(code, { depth: 0 });
+            let embed = new Discord.RichEmbed()
+                .setAuthor('Evaluación')
+                .setColor('RANDOM')
+                .addField(':inbox_tray: Entrada', `\`\`\`js\n${codein}\`\`\``)
+                .addField(':outbox_tray: Salida', `\`\`\`js\n${code}\n\`\`\``)
+            message.channel.send(embed);
 
-            message.channel.send(clean(evaled), { code: "js" });
-
-
-            if (evaled.length > 2000) {
-                hastebin(evaled, "js").then(function (r) {
+            if (code.length > 2000) {
+                hastebin(code, "js").then(function (r) {
                     return message.channel.send(`The limit has been exceeded, so I made it into a Hastebin link! :sweat_smile:\n${r}`)
                 });
             };
 
-        } catch (err) {
-            message.channel.send(`\`ERROR\` \`\`\`js\n${clean(err)}\n\`\`\``);
+        } catch (e) {
+            message.channel.send(`\`\`\`js\n${e}\n\`\`\``);
         }
+
     }
 }
 

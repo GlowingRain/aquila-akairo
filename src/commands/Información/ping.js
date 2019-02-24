@@ -1,12 +1,11 @@
 const { Command } = require('discord-akairo');
 const { RichEmbed } = require('discord.js');
-const colors = require('../../modules/colors');
+const colors = require('../../utils/colors');
 
 class PingCommand extends Command {
     constructor() {
         super('ping', {
             aliases: ['ping', 'pong'],
-            category: 'Información',
         });
     }
 

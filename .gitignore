@@ -1,7 +1,3 @@
 node_modules
-<<<<<<< HEAD
 .env
-bwd
-=======
-.env
->>>>>>> 2fe925dc3596cae220a57f47969317e76026dff8
+.vscode
