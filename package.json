@@ -1,5 +1,5 @@
 {
-  "name": "aquila-klasa",
+  "name": "aquila-akairo",
   "version": "1.0.0",
   "description": "Aquila rewritten using Komada for Discord.js",
   "main": "aquila.js",
@@ -9,8 +9,8 @@
   "author": "GlowingRain",
   "license": "ISC",
   "dependencies": {
+    "discord-akairo": "^7.5.5",
     "discord.js": "^11.4.2",
-    "dotenv": "^6.2.0",
-    "komada": "^0.21.1"
+    "dotenv": "^6.2.0"
   }
 }

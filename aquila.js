@@ -1,12 +1,12 @@
-const komada = require("komada");
+const { AkairoClient } = require('discord-akairo');
+require('dotenv').config();
 
-const client = new komada.Client({
-  ownerID : "your-user-id",
-  prefix: "+",
-  clientOptions: {
-    fetchAllMembers: false,
-  },
-  cmdLogging: true,
+const client = new AkairoClient({
+    ownerID: '543106179774021654',
+    prefix: 'a!',
+    commandDirectory: './src/main/commands/',
 });
 
-client.login("your-bot-token");
+client.login().then(() => {
+    console.log('Started up!');
+});
