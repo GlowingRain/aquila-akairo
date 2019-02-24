@@ -6,7 +6,7 @@ const client = new AkairoClient({
     prefix: process.env.PREFIX,
     commandDirectory: './src/commands/',
 }, {
-    disableEveryone: true
-});
+        disableEveryone: true
+    });
 
-client.login(process.env.TOKEN);
+client.login();
