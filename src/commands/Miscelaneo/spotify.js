@@ -1,5 +1,5 @@
 const { Command } = require('discord-akairo');
-const { RichEmbed } = require('discord.js');
+const Discord = require('discord.js');
 const { errorMessage, warnMessage } = require('../../modules/errors');
 const { green } = require('../../modules/colors');
 const Canvas = require('canvas');
@@ -30,9 +30,10 @@ class SpotifyCommand extends Command {
         let trackAuthor = user.presence.game.state;
         
         if (!user.presence.game) return;
+        if (!user.presence.game.name !== 'Spotify' && !user.presence.game.type === 2) return;
 
         if (user.presence.game.name === 'Spotify' && user.presence.game.type === 2) {
-                const embed = new RichEmbed()
+                const embed = new Discord.RichEmbed()
                     .setAuthor(`Spotify | ${user.username}#${user.discriminator}`, 'https://www.iosicongallery.com/icons/spotify-music-2015-07-30/512.png')
                     .setColor(green)
                     .setThumbnail(trackImg)
@@ -47,9 +48,9 @@ class SpotifyCommand extends Command {
             const canvas = Canvas.createCanvas(700, 250);
             const ctx = canvas.getContext('2d');
 
-            const background = await Canvas.loadImage('/src/stuff/bg.jpg');
+            const background = await Canvas.loadImage('../../images/commands/wallpaper.jpg');
             ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-            const attachment = new Discord.Attachment(canvas.toBuffer(), 'bg.jpg');
+            const attachment = new Discord.Attachment(canvas.toBuffer(), 'spotify-image.png');
 
             return message.channel.send(attachment);
         }
