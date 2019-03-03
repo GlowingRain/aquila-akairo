@@ -1,5 +1,4 @@
 const { Command } = require('discord-akairo');
-const { errorMessage } = require('../../utils/errors');
 
 class ReloadCommand extends Command {
     constructor() {
