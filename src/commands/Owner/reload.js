@@ -21,6 +21,7 @@ class ReloadCommand extends Command {
     }
 
     exec(message, args) {
+        
         if (args.all) {
             this.handler.reloadAll();
             return message.channel.send('**Se ha recargado todo.**').then(
@@ -28,7 +29,9 @@ class ReloadCommand extends Command {
             );
         };
 
-        this.handler.reload(args.commandID);
+        this.handler.reload(args.commandID).then(
+            this.client.logger.warn(`El comando ${commandID} ha sido recargado con éxito`)
+        );
         return message.channel.send(`**Se recargó el comando \`${args.commandID}\`**`);
     }
 }
