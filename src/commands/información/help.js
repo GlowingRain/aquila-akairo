@@ -30,7 +30,7 @@ class HelpCommand extends Command {
             const field = {
                 name: cat.toTitleCaseAll(),
                 value: '',
-                inline: true,
+                inline: false,
             };
 
             cmd.forEach((cmd2) => {
@@ -45,63 +45,39 @@ class HelpCommand extends Command {
         return embed;
     };
 
-    // Returns a list of all command categories, and also a list of commands for each category
-    // _getFullList(msg) {
-    //     const embed = new RichEmbed();
-    //     this.handler.categories.forEach((v, k) => {
-    //         const field = {
-    //             name: k.toTitleCaseAll(),
-    //             value: '',
-    //             inline: true,
-    //         };
-    //         v.forEach((v2) => {
-    //             const p = v2.prefix || this.handler.prefix(msg);
-    //             field.value += `\`${CommonUtil.emoji.enabled[v2.enabled]} ${v2.aliases[0]}\`\n`;
-    //         });
-    //         field.value = `${field.value}`;
-    //         embed.fields.push(field);
-    //     });
-    //     embed.color = 0xFF00FF;
-    //     return embed;
-    // }
+    _getCmdInfo(msg, cmd) {
+        const embed = new RichEmbed();
+        const p = cmd.prefix || this.handler.prefix(msg);
+        embed.title = `\`${p}${cmd.aliases[0]}\``;
+        embed.description = cmd.description;
+        
+        if (cmd.args) {
+            embed.fields.push({
+                name: 'Argumentos',
+                value: `Tipo: *${cmd.type}*\nPredeterminado: ${cmd.default}`,
+                inline: true,
+            })
+        };
 
-    // Returns an embed with a command description, aliases, and fields describing the arguments of a given command
-    // _getCmdInfo(msg, cmd) {
-    //     const embed = new RichEmbed();
-    //     const p = cmd.prefix || this.handler.prefix(msg);
-    //     embed.title = `\`${p}${cmd.aliases.shift()}\``;
-    //     embed.description = cmd.description;
-    //     cmd.args.forEach((v) => {
-    //         embed.fields.push({
-    //             name: v.id,
-    //             value: `Type: *${v.type}*\nDefault: ${v.default()}`,
-    //             inline: true,
-    //         });
-    //     });
-    //     embed.color = 0xEE82EE;
-    //     return embed;
-    // }
+        embed.setColor(colors['mediumpurple']);
+        return embed;
+    }
 
     exec(message, args) {
         if (args.key) {
             // Find command or category
             const key = args.key.toLowerCase();
-            if (this.handler.categories.has(key)) { // Found a category
-                const cat = this.handler.categories.get(key);
-                return message.util.send(`Lista de comandos en la categoría de **${key.toTitleCaseAll()}**`,
-                    { embed: this._getCmdList(message, cat) });
-            }
-            else if (this.handler.modules.has(key)) { // Found a command
+            if (this.handler.modules.has(key)) { // Found a command
                 const cmd = this.handler.modules.get(key);
                 return message.util.send(`Here is some help for the **${key}** command`,
                     { embed: this._getCmdInfo(message, cmd) });
             }
             else {
-                return message.util.send(`No pude encontrar categorías o comandos llamados **${key}**`);
+                return message.util.send(`No pude encontrar comandos llamados **${key}**`);
             }
         }
         // List all categories if none was provided
-        return message.util.send('**Aquí hay una lista de todos los comandos por lista:**',
+        return message.util.send('**Aquí hay una lista de todos los comandos por categoría:**',
             { embed: this._getFullList(message) });
     }
 }
