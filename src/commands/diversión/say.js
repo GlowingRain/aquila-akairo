@@ -25,8 +25,9 @@ class SayCommand extends Command {
 
         if (args.embed) {
             const embed = new RichEmbed()
-                .setDescription(args.content);
-
+                .setDescription(args.content)
+                .setColor(colors['hotpink'])
+                
             message.delete().catch(O_o => { });
             return message.channel.send(embed);
         }

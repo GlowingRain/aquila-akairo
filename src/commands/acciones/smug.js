@@ -13,7 +13,7 @@ class SmugCommand extends Command {
         });
     };
 
-    async exec(message, args) {
+    async exec(message) {
         const { url } = await sfw.smug()
         const embed = new Discord.RichEmbed()
             .setColor('RANDOM')
