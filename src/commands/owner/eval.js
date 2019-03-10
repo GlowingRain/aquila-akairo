@@ -6,7 +6,7 @@ class EvalCommand extends Command {
     constructor() {
         super('eval', {
             aliases: ['eval', 'e'],
-            args: [{ id: 'code' }],
+            args: [{ id: 'code', match: 'text' }],
             ownerOnly: true,
             prefix: '-'
         });
@@ -17,20 +17,23 @@ class EvalCommand extends Command {
             let codein = args.code;
             let code = eval(codein);
 
-            if (typeof code !== 'string')
-                code = require('util').inspect(code, { depth: 0 });
+            if (typeof code !== 'string') { 
+                code = require('util').inspect(code, { depth: 0 }); 
+            };
+
             let embed = new Discord.RichEmbed()
                 .setAuthor('Evaluación')
                 .setColor('RANDOM')
                 .addField(':inbox_tray: Entrada', `\`\`\`js\n${codein}\`\`\``)
-                .addField(':outbox_tray: Salida', `\`\`\`js\n${code}\n\`\`\``)
-            message.channel.send(embed);
-
+                .addField(':outbox_tray: Salida', `\`\`\`js\n${code}\n\`\`\``);
+            
             if (code.length > 2000) {
-                hastebin(code, "js").then(function (r) {
-                    return message.channel.send(`The limit has been exceeded, so I made it into a Hastebin link! :sweat_smile:\n${r}`)
+                hastebin(code, "js").then(r => {
+                    return message.channel.send(`El límite de carácteres fue excedido, por lo que he hecho el output un [link de Hastebin...](${r}) :sweat_smile:`)
                 });
             };
+
+            message.channel.send(embed);
 
         } catch (e) {
             message.channel.send(`\`\`\`js\n${e}\n\`\`\``);
