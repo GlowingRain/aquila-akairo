@@ -48,13 +48,13 @@ class HelpCommand extends Command {
     _getCmdInfo(msg, cmd) {
         const embed = new RichEmbed();
         const p = cmd.prefix || this.handler.prefix(msg);
-        embed.title = `\`${p}${cmd.aliases[0]}\``;
+        embed.title = `Información sobre ${p}${cmd.aliases[0]}`;
         embed.description = cmd.description;
-        
-        if (cmd.args) {
+
+        if (cmd.aliases) {
             embed.fields.push({
-                name: 'Argumentos',
-                value: `Tipo: *${cmd.type}*\nPredeterminado: ${cmd.default}`,
+                name: 'Alias',
+                value: `\`${cmd.aliases.join(', ')}\``,
                 inline: true,
             })
         };
@@ -69,7 +69,7 @@ class HelpCommand extends Command {
             const key = args.key.toLowerCase();
             if (this.handler.modules.has(key)) { // Found a command
                 const cmd = this.handler.modules.get(key);
-                return message.util.send(`Here is some help for the **${key}** command`,
+                return message.util.send(`Aquí hay información sobre el comando **\`${key}\`**`,
                     { embed: this._getCmdInfo(message, cmd) });
             }
             else {

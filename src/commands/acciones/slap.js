@@ -9,7 +9,7 @@ class SlapCommand extends Command {
     constructor() {
         super('slap', {
             aliases: ['slap'],
-            clientPermissions: ['ATTACH_FILES', 'EMBED_LINKS'],
+            clientPermissions: 'EMBED_LINKS',
             args: [
                 {
                     id: 'user',

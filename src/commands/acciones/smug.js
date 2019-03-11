@@ -9,7 +9,7 @@ class SmugCommand extends Command {
     constructor() {
         super('smug', {
             aliases: ['smug'],
-            clientPermissions: ['ATTACH_FILES', 'EMBED_LINKS'],
+            clientPermissions: 'EMBED_LINKS',
         });
     };
 

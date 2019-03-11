@@ -5,10 +5,10 @@ const Discord = require('discord.js');
 const client = require('nekos.life');
 const { sfw } = new client();
 
-class KissCommand extends Command {
+class HugCommand extends Command {
     constructor() {
-        super('kiss', {
-            aliases: ['kiss'],
+        super('poke', {
+            aliases: ['poke'],
             clientPermissions: 'EMBED_LINKS',
             args: [
                 {
@@ -24,17 +24,17 @@ class KissCommand extends Command {
         if (args.user.bot === true) return;
         if (args.user === message.author) return;
         if (args.user) {
-            const { url } = await sfw.kiss()
+            const { url } = await sfw.poke()
             const embed = new Discord.RichEmbed()
                 .setColor('RANDOM')
                 .setImage(url)
-                .setDescription(`💖 **${message.author.username}** te ha dado un beso... **${args.user.username}**.`);
+                .setDescription(`💢 **${message.author.username}** está molestando a **${args.user.username}**.`);
 
             return message.channel.send({ embed });
         } else {
-            message.channel.send('¿Es en serio...?')
+            message.channel.send('Veo que estás solo, vaya sorpresa...')
         };
     }
 }
 
-module.exports = KissCommand;
+module.exports = HugCommand;

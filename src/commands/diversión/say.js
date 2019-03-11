@@ -17,7 +17,8 @@ class SayCommand extends Command {
                     prefix: ['--embed', '--e']
                 },
             ],
-            clientPermissions: ['MANAGE_MESSAGES']
+            clientPermissions: ['MANAGE_MESSAGES'],
+            userPermissions: 'MANAGE_MESSAGES'
         });
     };
 

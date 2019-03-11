@@ -29,7 +29,7 @@ class EvalCommand extends Command {
             
             if (code.length > 2000) {
                 hastebin(code, "js").then(r => {
-                    return message.channel.send(`El límite de carácteres fue excedido, por lo que he hecho el output un [link de Hastebin...](${r}) :sweat_smile:`)
+                    return message.channel.send(`El límite de carácteres fue excedido, por lo que he puesto el output en un [link de Hastebin...](${r}) :sweat_smile:`)
                 });
             };
 

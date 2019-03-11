@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const hexColorRegex = require('hex-color-regex');
+const colors = require('./colors');
 
 module.exports.randomValue = (array) => {
     return array[Math.floor(Math.random() * array.length)];
