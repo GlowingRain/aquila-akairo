@@ -27,6 +27,7 @@
     "moment": "^2.24.0",
     "nekos.life": "^2.0.4",
     "node-weeb": "^1.0.4",
+    "ora": "^3.2.0",
     "superagent": "^4.1.0",
     "table": "^5.2.3",
     "weez": "^1.4.0"

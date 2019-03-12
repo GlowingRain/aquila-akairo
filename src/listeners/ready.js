@@ -14,9 +14,7 @@ class ReadyListener extends Listener {
 
     exec() {
         // Platform
-        let runningOn;
-        if (platform() === 'win32') runningOn = chalk.blue('Windows');
-        if (platform() === 'linux') runningOn = chalk.green('Linux');
+        let serversOn = this.client.guilds.size;
 
         // Ascii Text
         let aquila = "Aquila";
@@ -27,12 +25,13 @@ class ReadyListener extends Listener {
 
         // Some data to log with Aquila 
         let AquilaData = [
-            ['Tag', 'Versión', 'Prefijo', 'Plataforma'],
-            [chalk.magenta(this.client.user.tag), chalk.bgRed(process.env.VERSION), chalk.green(process.env.PREFIX), chalk.blue(runningOn)]
+            ['Tag', 'Versión', 'Prefijo', 'Servidores'],
+            [chalk.magenta(this.client.user.tag), chalk.bgRed(process.env.VERSION), chalk.green(process.env.PREFIX), chalk.blue(serversOn)]
         ];
 
         // Log everything (chalk indeed uwu)
         let output = table(AquilaData);
+        console.log(line.repeat(50));
         console.log(chalk.magenta(aquila_ascii));
         console.log(line.repeat(50));
         console.log(output);

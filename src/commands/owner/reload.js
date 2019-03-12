@@ -25,16 +25,12 @@ class ReloadCommand extends Command {
         // If all
         if (args.all) {
             this.handler.reloadAll();
-            return message.channel.send('**Se ha recargado todo.**').then(
-                this.client.logger.warn('El CommandHandler ha recargado todos los módulos')
-            );
-        };
+            return message.channel.send('**Se ha recargado todo.**');
+        }
 
         // If command (default)
         this.handler.reload(args.commandID);
-        return message.channel.send(`**Se recargó el comando \`${args.commandID}\`**`).then(
-            this.client.logger.warn(`El comando "${args.commandID}" ha sido recargado con éxito`)
-        );
+        return message.channel.send(`**Se recargó el comando \`${args.commandID}\`**`);
     }
 }
 
