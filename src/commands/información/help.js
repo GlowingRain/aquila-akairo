@@ -2,6 +2,10 @@
 const { CommonUtil } = require('../../utils/CommandUtil');
 const colors = require('../../utils/colors');
 
+// Mine
+const { grabEmoji } = require('../../utils/tools');
+const { errorMessage, warnMessage } = require('../../utils/errors');
+
 // Required things for using Embeds and extending Akairo Command
 const { RichEmbed } = require('discord.js');
 const { Command } = require('discord-akairo');
@@ -25,7 +29,11 @@ class HelpCommand extends Command {
     }
 
     _getFullList(msg) {
-        const embed = new RichEmbed();
+        const embed = new RichEmbed()
+            .setFooter('Aquila v' + process.env.VERSION)
+            .setThumbnail(this.client.user.displayAvatarURL)
+            .setTimestamp(new Date());
+
         this.handler.categories.forEach((cmd, cat) => {
             const field = {
                 name: cat.toTitleCaseAll(),
@@ -34,7 +42,9 @@ class HelpCommand extends Command {
             };
 
             cmd.forEach((cmd2) => {
-                field.value += `\`${cmd2.aliases[0]}\`\n`
+                let cmdName = cmd2.aliases[0];
+                field.value += `\`${cmdName}\`\n`
+                field.inline = true;
             });
 
             field.value = `${field.value}`;
@@ -46,10 +56,13 @@ class HelpCommand extends Command {
     };
 
     _getCmdInfo(msg, cmd) {
-        const embed = new RichEmbed();
-        const p = cmd.prefix || this.handler.prefix(msg);
-        embed.title = `Información sobre ${p}${cmd.aliases[0]}`;
-        embed.description = cmd.description;
+        const embed = new RichEmbed()
+            .setFooter('Aquila v' + process.env.VERSION)
+            .setThumbnail(this.client.user.displayAvatarURL)
+            .setTimestamp(new Date());
+
+        embed.title = `Información sobre ${cmd.aliases[0]}`;
+        embed.description = cmd.description ? cmd.description : 'No hay una descripción para este comando.';
 
         if (cmd.aliases) {
             embed.fields.push({
@@ -67,18 +80,24 @@ class HelpCommand extends Command {
         if (args.key) {
             // Find command or category
             const key = args.key.toLowerCase();
-            if (this.handler.modules.has(key)) { // Found a command
+            
+            if (this.handler.modules.has(key)) {
+                // Found a command
                 const cmd = this.handler.modules.get(key);
-                return message.util.send(`Aquí hay información sobre el comando **\`${key}\`**`,
-                    { embed: this._getCmdInfo(message, cmd) });
-            }
-            else {
-                return message.util.send(`No pude encontrar comandos llamados **${key}**`);
+                return message.author.send(`Aquí hay información sobre el comando **\`${key}\`**`, { embed: this._getCmdInfo(message, cmd) })
+                    .catch(O_o => {
+                        errorMessage('No puedo enviarte mis comandos, revisa tus opciones de privacidad.', message);
+                    });
+            } else {
+                return warnMessage(`No pude encontrar comandos llamados **${key}**`, message);
             }
         }
+
         // List all categories if none was provided
-        return message.util.send('**Aquí hay una lista de todos los comandos por categoría:**',
-            { embed: this._getFullList(message) });
+        return message.author.send('**Aquí hay una lista de todos los comandos por categoría:**', { embed: this._getFullList(message) })
+            .catch(O_o => {
+                errorMessage('No puedo enviarte mis comandos, revisa tus opciones de privacidad.', message);
+            });
     }
 }
 

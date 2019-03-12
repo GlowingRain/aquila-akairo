@@ -6,7 +6,7 @@ module.exports.randomValue = (array) => {
     return array[Math.floor(Math.random() * array.length)];
 };
 
-module.exports.deleteMessageAfterSent = (message, content, interval) => {   
+module.exports.deleteMessageAfterSent = (message, content, interval) => {
     // String to integer (string => number)
     let ms = parseInt(interval);
     // Must always be a string
@@ -28,5 +28,10 @@ module.exports.embedMessage = (message, content, hex) => {
         embed.setColor(0x36393E);
     }
 
-    return message.channel.send({embed});
+    return message.channel.send({ embed });
+};
+
+module.exports.grabEmoji = (client, emoji) => {
+    let grabbed = client.emojis.get(emoji)
+    return grabbed;
 };

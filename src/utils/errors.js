@@ -4,7 +4,7 @@ const colors = require('./colors');
 module.exports.errorMessage = (error, message) => {
     const errorMsg = new RichEmbed()
         .setColor(colors['red'])
-        .setDescription(`**\`[❌]\`** - ${error}`);
+        .setDescription(`❌ | ${error}`);
 
     return message.channel.send(errorMsg);
 };
@@ -12,7 +12,7 @@ module.exports.errorMessage = (error, message) => {
 module.exports.warnMessage = (warning, message) => {
     const warnMsg = new RichEmbed()
         .setColor(colors['orange'])
-        .setDescription(`**\`[⚠]\`** - ${warning}`);
+        .setDescription(`⚠ | ${warning}`);
 
     return message.channel.send(warnMsg);
 };
