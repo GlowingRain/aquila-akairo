@@ -27,13 +27,8 @@ class ReadyListener extends Listener {
 
         // Some data to log with Aquila 
         let AquilaData = [
-            ['Tag', 'Version', 'Prefix', 'Platform'],
-            [
-                chalk.magenta(this.client.user.tag),
-                chalk.bgRed(process.env.VERSION),
-                chalk.green(process.env.PREFIX),
-                chalk.blue(runningOn)
-            ]
+            ['Tag', 'Versión', 'Prefijo', 'Plataforma'],
+            [chalk.magenta(this.client.user.tag), chalk.bgRed(process.env.VERSION), chalk.green(process.env.PREFIX), chalk.blue(runningOn)]
         ];
 
         // Log everything (chalk indeed uwu)
