@@ -12,7 +12,7 @@ class CommandStartedListener extends Listener {
 
     exec(message, command) {
         let commandUsed = command;
-        let timestamp = `${moment(new Date()).format("DD-MM-YY H:m:s")}`;
+        let timestamp = `${moment(new Date()).format("DD-MM-YY HH:mm:ss")}`;
 
         // Create the log itself with Chalk and Moment
         let msg = `[${timestamp}] | ${chalk.red('GUILD')}: ${chalk.yellow(message.guild.id)} | ${chalk.magenta(commandUsed)} ha sido usado por ${message.author.tag} en #${message.channel.name}`;
