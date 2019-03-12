@@ -10,7 +10,4 @@ const client = new AkairoClient({
     commandUtil: true,
 }, { disableEveryone: true });
 
-// Extra Modules
-client.logger = require('./src/utils/logger');
-
 client.login();

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/GlowingRain/aquila-akairo#readme",
   "dependencies": {
+    "ascii-text-generator": "^1.0.5",
     "chalk": "^2.4.2",
     "discord-akairo": "^7.5.5",
     "discord.js": "^11.4.2",
@@ -27,6 +28,7 @@
     "nekos.life": "^2.0.4",
     "node-weeb": "^1.0.4",
     "superagent": "^4.1.0",
+    "table": "^5.2.3",
     "weez": "^1.4.0"
   }
 }
