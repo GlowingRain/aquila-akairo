@@ -12,12 +12,17 @@ class PingCommand extends Command {
     async exec(message) {
         const msg = await message.channel.send('¿Ping...?')
 
+        let ping = msg.createdTimestamp - message.createdTimestamp;
         const pingEmbed = new RichEmbed()
         .setTitle('¡Pong! ⏱️')
         .setColor(colors['magenta'])
-        .addField('Latencia', `${msg.createdTimestamp - message.createdTimestamp}ms`)
+        .addField('Latencia', `${ping}ms`)
         .addField('API', `${Math.round(this.client.ping)}ms`);
 
+        if (ping <= 100) pingEmbed.setDescription('En teoría yo debería estar bien.');
+        if (ping > 100) pingEmbed.setDescription('Algo... alto, pero funciona.');
+        if (ping > 200) pingEmbed.setDescription('Wow... ¡estoy volando irónicamente!');
+        
         msg.edit(pingEmbed);
     }
 }
