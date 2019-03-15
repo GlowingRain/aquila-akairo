@@ -1,5 +1,6 @@
 const { Command } = require('discord-akairo');
 const Discord = require('discord.js');
+const colors = require('../../utils/colors');
 
 // Nekos.Life
 const client = require('nekos.life');
@@ -26,7 +27,7 @@ class SlapCommand extends Command {
         if (args.user) {
             const { url } = await sfw.slap()
             const embed = new Discord.RichEmbed()
-                .setColor('RANDOM')
+                .setColor(colors['yellow'])
                 .setImage(url)
                 .setDescription(`💫 **${message.author.username}** le ha dado una bofeteada a **${args.user.username}**.`);
 

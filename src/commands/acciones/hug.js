@@ -1,5 +1,6 @@
 const { Command } = require('discord-akairo');
 const Discord = require('discord.js');
+const colors = require('../../utils/colors');
 
 // Nekos.Life
 const client = require('nekos.life');
@@ -26,7 +27,7 @@ class HugCommand extends Command {
         if (args.user) {
             const { url } = await sfw.hug()
             const embed = new Discord.RichEmbed()
-                .setColor('RANDOM')
+                .setColor(colors['crimson'])
                 .setImage(url)
                 .setDescription(`💖 **${args.user.username}**, has sido abrazado/a por **${message.author.username}**.`);
 

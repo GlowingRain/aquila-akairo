@@ -1,5 +1,6 @@
 const { Command } = require('discord-akairo');
 const Discord = require('discord.js');
+const colors = require('../../utils/colors');
 
 // Nekos.Life
 const client = require('nekos.life');
@@ -26,7 +27,7 @@ class HugCommand extends Command {
         if (args.user) {
             const { url } = await sfw.poke()
             const embed = new Discord.RichEmbed()
-                .setColor('RANDOM')
+                .setColor(colors['orange'])
                 .setImage(url)
                 .setDescription(`💢 **${message.author.username}** está molestando a **${args.user.username}**.`);
 

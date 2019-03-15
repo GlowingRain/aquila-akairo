@@ -1,5 +1,6 @@
 const { Command } = require('discord-akairo');
 const Discord = require('discord.js');
+const colors = require('../../utils/colors');
 
 // Nekos.Life
 const client = require('nekos.life');
@@ -16,7 +17,7 @@ class SmugCommand extends Command {
     async exec(message) {
         const { url } = await sfw.smug()
         const embed = new Discord.RichEmbed()
-            .setColor('RANDOM')
+            .setColor(colors['purple'])
             .setImage(url)
             .setDescription(`⚜ **${message.author.username}** sonrió de una manera muy engreída...`);
 

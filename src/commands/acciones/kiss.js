@@ -1,5 +1,6 @@
 const { Command } = require('discord-akairo');
 const Discord = require('discord.js');
+const colors = require('../../utils/colors');
 
 // Nekos.Life
 const client = require('nekos.life');
@@ -26,7 +27,7 @@ class KissCommand extends Command {
         if (args.user) {
             const { url } = await sfw.kiss()
             const embed = new Discord.RichEmbed()
-                .setColor('RANDOM')
+                .setColor(colors['crimson'])
                 .setImage(url)
                 .setDescription(`💖 **${message.author.username}** te ha dado un beso... **${args.user.username}**.`);
 
