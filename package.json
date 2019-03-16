@@ -1,6 +1,6 @@
 {
   "name": "aquila-akairo",
-  "version": "1.0.0",
+  "version": "0.0.3",
   "description": "Aquila rewritten using Akairo for Discord.js",
   "main": "aquila.js",
   "scripts": {

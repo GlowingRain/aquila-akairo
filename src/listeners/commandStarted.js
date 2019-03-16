@@ -17,13 +17,24 @@ class CommandStartedListener extends Listener {
         // Create the log itself with Chalk and Moment
         let guild;
         let used;
+        let user;
         
+        if (message.author.id === message.guild.ownerID) {
+            user = `${chalk.red('[GUILD OWNER]')} ${message.author.tag} (${message.author.id})`
+        }
+        
+        if (message.author.id === process.env.OWNER_ID) {
+            user = `${chalk.green('[OWNER]')} ${message.author.tag}`
+        } else {
+            user = `${chalk.gray('[USER]')} ${message.author.tag} (${message.author.id})`
+        }
+
         if (message.channel.type === 'dm') {
             guild = `${chalk.red('DM')}: ${chalk.yellow(message.author.id)}`;
-            used = `${chalk.magenta(commandUsed)} ha sido usado por ${message.author.tag}`;
+            used = `${chalk.magenta(commandUsed)} ha sido usado por ${user}`;
         } else {
             guild = `${chalk.red('GUILD')}: ${chalk.yellow(message.guild.id)}`;
-            used = `${chalk.magenta(commandUsed)} ha sido usado por ${message.author.tag} en #${message.channel.name}`;
+            used = `${chalk.magenta(commandUsed)} ha sido usado por ${user} en #${message.channel.name}`;
         }
 
         // Log it
