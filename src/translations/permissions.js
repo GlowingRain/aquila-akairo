@@ -25,9 +25,9 @@ module.exports = {
     // Voice related
     'CONNECT': 'Conectar',
     'SPEAK': 'Hablar',
-    'MUTE_MEMBERS': 'Silenciar miembros',
+    'MUTE_MEMBERS': 'Silenciar Miembros',
     'DEAFEN_MEMBERS': 'Ensordecer miembos',
-    'MOVE_MEMBERS': 'Mover miembros',
+    'MOVE_MEMBERS': 'Mover Miembros',
     'USE_VAD': 'Usar la actividad de voz',
 
     // Name related
