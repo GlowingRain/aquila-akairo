@@ -1,7 +1,7 @@
-# FOLDERS
+### FOLDERS ###
 node_modules
 .vscode
 
-# FILES 
+### FILES ### 
 ecosystem.config.js
-.env
+.env 

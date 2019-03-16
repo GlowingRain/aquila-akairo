@@ -10,7 +10,7 @@ class KissCommand extends Command {
     constructor() {
         super('kiss', {
             aliases: ['kiss'],
-            clientPermissions: 'EMBED_LINKS',
+            clientPermissions: ['EMBED_LINKS'],
             args: [
                 {
                     id: 'user',

@@ -14,7 +14,8 @@ class SpotifyCommand extends Command {
                     type: 'user',
                     default: message => message.author
                 }
-            ]
+            ],
+            clientPermissions: ['EMBED_LINKS']
         });
     }
 

@@ -10,7 +10,7 @@ class SmugCommand extends Command {
     constructor() {
         super('smug', {
             aliases: ['smug'],
-            clientPermissions: 'EMBED_LINKS',
+            clientPermissions: ['EMBED_LINKS'],
         });
     };
 

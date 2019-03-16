@@ -12,7 +12,7 @@ class AvatarCommand extends Command {
                     default: message => message.author
                 }
             ],
-            clientPermissions: 'EMBED_LINKS',
+            clientPermissions: ['EMBED_LINKS'],
             channelRestriction: 'guild'
         });
     }

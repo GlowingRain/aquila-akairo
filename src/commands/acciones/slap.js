@@ -10,7 +10,7 @@ class SlapCommand extends Command {
     constructor() {
         super('slap', {
             aliases: ['slap'],
-            clientPermissions: 'EMBED_LINKS',
+            clientPermissions: ['EMBED_LINKS'],
             args: [
                 {
                     id: 'user',

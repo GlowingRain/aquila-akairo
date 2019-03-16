@@ -11,6 +11,15 @@ const client = new AkairoClient({
         process
     },
 
+    // Prompts
+    defaultPrompt: {
+        timeout: message => 'el tiempo se agotó, se ha cancelado el comando.',
+        ended: message => 'se ha cancelado el comando debido a multiples intentos.',
+        cancel: message => 'el comando ha sido cancelado.',
+        retries: 3,
+        time: 30000
+    },
+
     // Directories
     commandDirectory: './src/commands/',
     listenerDirectory: './src/listeners/',

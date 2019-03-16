@@ -3,8 +3,11 @@ const { CommonUtil } = require('../../utils/CommandUtil');
 const colors = require('../../utils/colors');
 
 // Mine
-const { grabEmoji } = require('../../utils/tools');
 const { errorMessage, warnMessage } = require('../../utils/errors');
+
+// Translations
+const permissions = require('../../translations/permissions');
+const channels = require('../../translations/channels');
 
 // Required things for using Embeds and extending Akairo Command
 const { RichEmbed } = require('discord.js');
@@ -65,12 +68,20 @@ class HelpCommand extends Command {
         embed.description = cmd.description ? cmd.description : 'No hay una descripción para este comando.';
 
         if (cmd.aliases) {
-            embed.fields.push({
-                name: 'Alias',
-                value: `\`${cmd.aliases.join(', ')}\``,
-                inline: true,
-            })
-        };
+            embed.addField('Alias', `\`${cmd.aliases.join(', ')}\``, true)
+        }
+
+        if (cmd.channelRestriction) {
+            embed.addField('Restricción', `\`${channels[cmd.channelRestriction]}\``, true)
+        }
+
+        if (cmd.clientPermissions) {
+            embed.addField('Permisos', `\`${permissions[cmd.clientPermissions]}\``, true)
+        }
+
+        if (cmd.userPermissions) {
+            embed.addField('Permisos de miembro', `\`${permissions[cmd.userPermissions]}\``, true)
+        }
 
         embed.setColor(colors['mediumpurple']);
         return embed;
@@ -80,7 +91,7 @@ class HelpCommand extends Command {
         if (args.key) {
             // Find command or category
             const key = args.key.toLowerCase();
-            
+
             if (this.handler.modules.has(key)) {
                 // Found a command
                 const cmd = this.handler.modules.get(key);

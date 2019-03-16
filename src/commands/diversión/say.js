@@ -18,7 +18,7 @@ class SayCommand extends Command {
                 },
             ],
             clientPermissions: ['MANAGE_MESSAGES'],
-            userPermissions: 'MANAGE_MESSAGES'
+            userPermissions: ['MANAGE_MESSAGES']
         });
     };
 

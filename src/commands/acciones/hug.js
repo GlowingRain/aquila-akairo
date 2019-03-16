@@ -10,7 +10,7 @@ class HugCommand extends Command {
     constructor() {
         super('hug', {
             aliases: ['hug'],
-            clientPermissions: 'EMBED_LINKS',
+            clientPermissions: ['EMBED_LINKS'],
             args: [
                 {
                     id: 'user',

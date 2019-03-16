@@ -9,7 +9,7 @@ class SmugCommand extends Command {
     constructor() {
         super('neko', {
             aliases: ['neko'],
-            clientPermissions: 'EMBED_LINKS',
+            clientPermissions: ['EMBED_LINKS'],
             args: [
                 {
                     id: 'user',
