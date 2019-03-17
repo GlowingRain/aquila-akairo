@@ -10,5 +10,5 @@
 </p>
 
 <p align=center>
-  <strong>Wiki/Tutorials will be available when the bot reaches v1.0.0</strong>
+  <strong>Wiki/Tutorials will be available soon™</strong>
 </p>
