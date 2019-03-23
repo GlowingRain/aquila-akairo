@@ -6,7 +6,7 @@
 
 ---
 <p align=center>
-  <strong>Aquila</strong>, a bot aimed to be fully in spanish, rewritten using Akairo for Discord.js.</br>
+  <strong>Aquila</strong>, a bot aimed to be at least 90% in Spanish, rewritten using Akairo for Discord.js.</br>
   <strong>(Private use for one server at the moment).</strong>
 </p>
 
