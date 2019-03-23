@@ -1,4 +1,4 @@
-# Aquila <img src="https://i.imgur.com/zJzMjU3.png" align=right>
+# Aquila <img src="https://i.imgur.com/zJzMjU3.png?1" align=right>
 <p align=center>
   <img src="https://i.imgur.com/dHKHBQj.png"></br>
   <img src="https://forthebadge.com/images/badges/made-with-javascript.svg"> <img src="https://forthebadge.com/images/badges/contains-cat-gifs.svg">
