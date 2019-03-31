@@ -21,49 +21,49 @@ class System32Command extends Command {
 
       setTimeout(() => {
         embed.setTitle('10%')
-        embed.setDescription(`Eliminando los contenidos de \`${user.username.toLowerCase()}/System32/*\``)
+        embed.setDescription(`Eliminando los contenidos de \`${user.username.toLowerCase()}/System32/\``)
         msg.edit(embed)
       }, 2000);
 
       setTimeout(() => {
         embed.setTitle('20%')
-        embed.setDescription(`Eliminando los contenidos de \`${user.username.toLowerCase()}/System32/*\``)
+        embed.setDescription(`Eliminando los contenidos de \`${user.username.toLowerCase()}/System32/\``)
         msg.edit(embed)
       }, 2000);
 
       setTimeout(() => {
         embed.setTitle('35%')
-        embed.setDescription(`Eliminando los contenidos de \`${user.username.toLowerCase()}/System32/*\``)
+        embed.setDescription(`Eliminando los contenidos de \`${user.username.toLowerCase()}/System32/\``)
         msg.edit(embed)
       }, 2000);
 
       setTimeout(() => {
         embed.setTitle('45%')
-        embed.setDescription(`Eliminando los contenidos de \`${user.username.toLowerCase()}/System32/*\``)
+        embed.setDescription(`Eliminando los contenidos de \`${user.username.toLowerCase()}/System32/\``)
         msg.edit(embed)
       }, 2000);
 
       setTimeout(() => {
         embed.setTitle('60%')
-        embed.setDescription(`Eliminando los contenidos de \`${user.username.toLowerCase()}/System32/*\``)
+        embed.setDescription(`Eliminando los contenidos de \`${user.username.toLowerCase()}/System32/\``)
         msg.edit(embed)
       }, 2000);
 
       setTimeout(() => {
         embed.setTitle('78%')
-        embed.setDescription(`Eliminando los contenidos de \`${user.username.toLowerCase()}/System32/*\``)
+        embed.setDescription(`Eliminando los contenidos de \`${user.username.toLowerCase()}/System32/\``)
         msg.edit(embed)
       }, 2000);
 
       setTimeout(() => {
         embed.setTitle('98%')
-        embed.setDescription(`Eliminando los contenidos de \`${user.username.toLowerCase()}/System32/*\``)
+        embed.setDescription(`Eliminando los contenidos de \`${user.username.toLowerCase()}/System32/\``)
         msg.edit(embed)
       }, 2000);
 
       setTimeout(() => {
         embed.setTitle('99%')
-        embed.setDescription(`Eliminando los contenidos de \`${user.username.toLowerCase()}/System32/*\``)
+        embed.setDescription(`Eliminando los contenidos de \`${user.username.toLowerCase()}/System32/\``)
         msg.edit(embed)
       }, 2000);
 
