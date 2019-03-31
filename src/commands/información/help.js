@@ -6,8 +6,8 @@ const colors = require('../../utils/colors');
 const { errorMessage, warnMessage } = require('../../utils/errors');
 
 // Translations
-const permissions = require('../../translations/permissions');
 const channels = require('../../translations/channels');
+const permissions = require('../../translations/permissions');
 
 // Required things for using Embeds and extending Akairo Command
 const { RichEmbed } = require('discord.js');
@@ -68,19 +68,19 @@ class HelpCommand extends Command {
         embed.description = cmd.description ? cmd.description : 'No hay una descripción para este comando.';
 
         if (cmd.aliases) {
-            embed.addField('Alias', `\`${cmd.aliases.join(', ')}\``, true)
+            embed.addField('Alias', `\`${cmd.aliases.join(', ')}\``, true);
         }
 
         if (cmd.channelRestriction) {
-            embed.addField('Restricción', `\`${channels[cmd.channelRestriction]}\``, true)
+            embed.addField('Restricción', `\`${channels[cmd.channelRestriction]}\``, true);
         }
 
         if (cmd.clientPermissions) {
-            embed.addField('Permisos', `\`${permissions[cmd.clientPermissions]}\``, true)
+            embed.addField('Permisos', `\`${permissions[cmd.clientPermissions]}\``, true);
         }
 
         if (cmd.userPermissions) {
-            embed.addField('Permisos de miembro', `\`${permissions[cmd.userPermissions]}\``, true)
+            embed.addField('Permisos de miembro', `\`${permissions[cmd.userPermissions]}\``, true);
         }
 
         embed.setColor(colors['mediumpurple']);
@@ -88,6 +88,8 @@ class HelpCommand extends Command {
     }
 
     exec(message, args) {
+        const filter = (reaction, client) => reaction.emoji.name === '✅' && client.id === this.client.id;
+
         if (args.key) {
             // Find command or category
             const key = args.key.toLowerCase();
@@ -95,21 +97,53 @@ class HelpCommand extends Command {
             if (this.handler.modules.has(key)) {
                 // Found a command
                 const cmd = this.handler.modules.get(key);
-                return message.author.send(`Aquí hay información sobre el comando **\`${key}\`**`, { embed: this._getCmdInfo(message, cmd) })
-                    .catch(O_o => {
-                        errorMessage('No puedo enviarte mis comandos, revisa tus opciones de privacidad.', message);
-                    });
-            } else {
-                return warnMessage(`No pude encontrar comandos llamados **${key}**`, message);
+                if (message.channel.type === 'text') {
+                    message.react('✅');
+                    message.awaitReactions(filter, { time: 5000 })
+                        .catch(() => {
+                            errorMessage('Se ha excedido el tiempo límite, por favor contacta al dueño, revisa los permisos o intenta más tarde.', message)
+                        });
+
+                    return message.author.send(`Aquí hay información sobre el comando **\`${key}\`**`, { embed: this._getCmdInfo(message, cmd) })
+                        .catch(() => {
+                            return errorMessage('No puedo enviarte mis comandos, revisa tus opciones de privacidad.', message);
+                        });
+
+                } else if (message.channel.type === 'dm') {
+                    return message.author.send(`Aquí hay información sobre el comando **\`${key}\`**`, { embed: this._getCmdInfo(message, cmd) })
+                        .catch(() => O_o);
+
+                } else {
+                    return warnMessage(`No pude encontrar comandos llamados **${key}**`, message);
+                }
             }
         }
 
         // List all categories if none was provided
-        return message.author.send('**Aquí hay una lista de todos los comandos por categoría:**', { embed: this._getFullList(message) })
-            .catch(O_o => {
-                errorMessage('No puedo enviarte mis comandos, revisa tus opciones de privacidad.', message);
-            });
+        if (message.channel.type === 'text') {
+            message.react('✅');
+            message.awaitReactions(filter, { time: 100 })
+                .catch(() => {
+                    return errorMessage('Se ha excedido el tiempo límite, por favor contacta al dueño o intenta más tarde.', message)
+                });
+
+            return message.author.send('**Aquí hay una lista de todos los comandos por categoría:**', { embed: this._getFullList(message) })
+                .catch(() => {
+                    errorMessage('No puedo enviarte mis comandos, revisa tus opciones de privacidad.', message).then(m => m.delete(10000));
+                });
+                
+        } else if (message.channel.type === 'dm') {
+            return message.author.send('**Aquí hay una lista de todos los comandos por categoría:**', { embed: this._getFullList(message) })
+                .catch(() => O_o)
+        };
+
+        // if (message.channel.type === 'text') message.react('✅');
+        // return await message.author.send('**Aquí hay una lista de todos los comandos por categoría:**', { embed: this._getFullList(message) })
+        //     .catch(msg => {
+        //         return errorMessage('No puedo enviarte mis comandos, revisa tus opciones de privacidad.', message).then(m => m.delete(10000));
+        //     });
     }
 }
+
 
 module.exports = HelpCommand;

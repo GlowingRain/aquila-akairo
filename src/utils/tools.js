@@ -27,7 +27,7 @@ module.exports.embedMessage = (message, content, hex) => {
     } else {
         embed.setColor(0x36393E);
     }
-
+    
     return message.channel.send({ embed });
 };
 

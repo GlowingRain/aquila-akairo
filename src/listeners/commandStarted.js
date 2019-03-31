@@ -18,11 +18,13 @@ class CommandStartedListener extends Listener {
         let guild;
         let used;
         let user;
-        
-        if (message.author.id === message.guild.ownerID) {
-            user = `${chalk.red('[GUILD OWNER]')} ${message.author.tag} (${message.author.id})`
+
+        if (message.channel === 'text') {
+            if (message.author.id === message.guild.ownerID) {
+                user = `${chalk.red('[GUILD OWNER]')} ${message.author.tag} (${message.author.id})`
+            }
         }
-        
+
         if (message.author.id === process.env.OWNER_ID) {
             user = `${chalk.green('[OWNER]')} ${message.author.tag}`
         } else {

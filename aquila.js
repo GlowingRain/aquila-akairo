@@ -5,7 +5,7 @@ const client = new AkairoClient({
     // Settings
     ownerID: process.env.OWNER_ID,
     prefix: process.env.PREFIX,
-    
+
     // Emiters
     emitters: {
         process
@@ -13,10 +13,11 @@ const client = new AkairoClient({
 
     // Prompts
     defaultPrompt: {
-        timeout: message => 'el tiempo se agotó, se ha cancelado el comando.',
-        ended: message => 'se ha cancelado el comando debido a multiples intentos.',
-        cancel: message => 'el comando ha sido cancelado.',
-        retries: 3,
+        timeout: message => 'El tiempo se agotó, se ha cancelado el comando.',
+        ended: message => 'Se ha cancelado el comando debido a multiples intentos.',
+        cancel: message => 'El comando ha sido cancelado.',
+        cancelWord: 'cancelar',
+        retries: 2,
         time: 30000
     },
 
@@ -27,7 +28,7 @@ const client = new AkairoClient({
     // CommandRelated
     automateCategories: true,
     commandUtil: true,
-    
+
 }, { disableEveryone: true });
 
 client.login();

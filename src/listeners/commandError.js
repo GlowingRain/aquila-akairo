@@ -14,7 +14,7 @@ class CommandErrorListener extends Listener {
         let timestamp = `${moment(new Date()).format("DD-MM-YY HH:mm:ss")}`;
 
         // Create the log itself with Chalk and Moment
-        let log = `${timestamp} | ${chalk.bgRed.bold(`ERROR - ${error}`)} | ${command}`
+        let log = `${timestamp} | ${chalk.bgRed.bold(`ERROR - ${error}`)} | ${command.stack}`
 
         console.log(log);
     }

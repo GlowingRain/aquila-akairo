@@ -1,4 +1,6 @@
 const { Command } = require('discord-akairo');
+const { embedMessage, randomValue } = require('../../utils/tools');
+const colors = require('../../utils/colors');
 
 class ReloadCommand extends Command {
     constructor() {
@@ -14,6 +16,11 @@ class ReloadCommand extends Command {
                     match: 'flag',
                     prefix: '--all'
                 },
+                {
+                    id: 'load',
+                    match: 'flag',
+                    prefix: '--load'
+                }
             ],
             ownerOnly: true,
             prefix: '-',
@@ -21,16 +28,21 @@ class ReloadCommand extends Command {
     }
 
     exec(message, args) {
-        
         // If all
         if (args.all) {
-            this.handler.reloadAll();
-            return message.channel.send('**Se ha recargado todo.**');
+            return this.handler.reloadAll()
+                .then(embedMessage(message, '**Se ha recargado todo.**'))
+        }
+
+        // If loadAll
+        if (args.load) {
+            embedMessage(message, '**Todos los módulos van a ser cargados de vuelta en breves momentos...**')
+                .then(this.handler.removeAll()).then(this.handler.loadAll());
         }
 
         // If command (default)
         this.handler.reload(args.commandID);
-        return message.channel.send(`**Se recargó el comando \`${args.commandID}\`**`);
+        return embedMessage(message, `Se ha recargado el comando **\`${args.commandID}\`**`)
     }
 }
 

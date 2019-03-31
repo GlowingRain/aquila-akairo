@@ -7,7 +7,6 @@ class SpotifyCommand extends Command {
     constructor() {
         super('spotify', {
             aliases: ['spotify'],
-            channelRestriction: 'guild',
             args: [
                 {
                     id: 'user',
@@ -26,7 +25,7 @@ class SpotifyCommand extends Command {
         if (args.user) {
             if (!user.presence.game) return;
             if (!user.presence.game.name !== 'Spotify' && !user.presence.game.type === 2) return;
-
+            
             if (user.presence.game.name === 'Spotify' && user.presence.game.type === 2) {
                 let trackImg = user.presence.game.assets.largeImageURL;
                 let trackUrl = `https://open.spotify.com/track/${user.presence.game.syncID}`;
