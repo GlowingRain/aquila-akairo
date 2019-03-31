@@ -6,10 +6,10 @@
 
 ---
 <p align=center>
-  <strong>Aquila</strong>, a bot aimed to be at least 90% in Spanish, rewritten using Akairo for Discord.js.</br>
-  <strong>(Private use for one server at the moment).</strong>
+  <strong>Aquila</strong>, un bot destinado a ser en su totalidad en español, reescrito usando Akairo para Discord.js.</br>
+  <strong>(Solo uso privado, por el momento).</strong>
 </p>
 
 <p align=center>
-  <strong>Wiki/Tutorials will be available soon™</strong>
+  <strong>La Wiki/Tutoriales estarán disponible pronto™</strong>
 </p>
