@@ -11,5 +11,5 @@
 </p>
 
 <p align=center>
-  <strong>Wiki/Tutorials will be available soon™</strong>
+  <strong>Wiki - https://rainetic.gitbook.io/aquila-discord-bot/</strong>
 </p>
