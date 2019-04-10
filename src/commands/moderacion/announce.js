@@ -54,20 +54,18 @@ class AnnounceCommand extends Command {
             .setFooter(message.guild.name)
             .setTimestamp(new Date());
 
-
         message.channel.send(sEmbed)
             .then(async msg => {
                 await channel.send(announce)
+                    .then(() => {
+                        sEmbed.setDescription('El anuncio se ha enviado con éxito.');
+                        sEmbed.setColor(colors['green']);
+                        return msg.edit(sEmbed);
+                    })
                     .catch((err) => {
-                        if (err) {
-                            sEmbed.setDescription(`El canal \`#${channel.name}\` no existe o no tengo permisos para verlo/enviar mensajes.`);
-                            sEmbed.setColor(colors['crimson']);
-                            return msg.edit(sEmbed);
-                        } else {
-                            sEmbed.setDescription('El anuncio se ha enviado con éxito.');
-                            sEmbed.setColor(colors['green']);
-                            return msg.edit(sEmbed);
-                        }
+                        sEmbed.setDescription(`El canal \`#${channel.name}\` no existe o no tengo permisos para verlo/enviar mensajes.`);
+                        sEmbed.setColor(colors['crimson']);
+                        return msg.edit(sEmbed);
                     });
             })
     }

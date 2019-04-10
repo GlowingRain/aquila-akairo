@@ -1,6 +1,5 @@
 const { Listener } = require('discord-akairo');
 const ascii_text_generator = require('ascii-text-generator');
-const { platform } = require('os');
 const chalk = require('chalk');
 const { table } = require('table');
 

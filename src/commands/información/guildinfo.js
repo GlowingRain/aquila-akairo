@@ -17,7 +17,7 @@ class GuildInfoCommand extends Command {
             let days = Math.floor(diff / 86400000);
             return days + (days == 1 ? " día" : " días");
         };
-        
+
         let verifLevels = ["Ninguno", "Bajo", "Medio", "Alto", "Máximo"];
         let region = {
             "brazil": ":flag_br: Brasil",
@@ -36,8 +36,10 @@ class GuildInfoCommand extends Command {
             "russia": ":flag_ru: Rusia",
             "southafrica": ":flag_za: Sudáfrica"
         };
-        
-        const emojiList = message.guild.emojis.map(e=>e.toString()).join(" ");
+
+        const emojiList = message.guild.emojis.map((e, x) => (x + ' = ' + e) + ' | ' + e.name).join('\n') || "No se encontraron emojis en este servidor.";
+        const emojiEmbed = new Discord.RichEmbed();
+
         const embed = new Discord.RichEmbed()
             .setAuthor(message.guild.name, message.guild.iconURL)
             .setThumbnail(message.guild.iconURL)
@@ -49,11 +51,15 @@ class GuildInfoCommand extends Command {
             .addField("Miembros", `${message.guild.members.size}`, true)
             .addField("Canales", message.guild.channels.size, true)
             .addField("Roles", message.guild.roles.size, true)
-            .addField("Fecha de Creación", `${moment.utc(message.channel.guild.createdAt).format('DD/MM/YYYY')} \n(hace ${checkDays(message.channel.guild.createdAt)})`, true)
-            .addBlankField(true)
-            .addField('Emotes', `${emojiList}`);
-            
-        message.channel.send({embed});
+            .addField("Fecha de Creación", `${moment.utc(message.channel.guild.createdAt).format('DD/MM/YYYY')} \n(hace ${checkDays(message.channel.guild.createdAt)})`, true);
+
+        message.channel.send({ embed });
+        if (message.guild.emojis) {
+            emojiEmbed.setColor('RANDOM')
+            emojiEmbed.setTitle(`Emojis de ${message.guild.name}`)
+            emojiEmbed.setDescription(emojiList);
+            message.channel.send(emojiEmbed);
+    }
     }
 }
 

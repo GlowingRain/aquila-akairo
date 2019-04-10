@@ -30,13 +30,13 @@ class ReloadCommand extends Command {
     exec(message, args) {
         // If all
         if (args.all) {
-            return this.handler.reloadAll()
-                .then(embedMessage(message, '**Se ha recargado todo.**'))
+            this.handler.reloadAll()
+            return embedMessage(message, '**Se ha recargado todo.**')
         }
 
         // If loadAll
         if (args.load) {
-            embedMessage(message, '**Todos los módulos van a ser cargados de vuelta en breves momentos...**')
+            return embedMessage(message, '**Todos los módulos van a ser cargados de vuelta en breves momentos...**')
                 .then(this.handler.removeAll()).then(this.handler.loadAll());
         }
 
