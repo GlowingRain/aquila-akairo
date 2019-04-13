@@ -27,7 +27,7 @@ class BanCommand extends Command {
 
     exec(message, args) {
         // Channel
-        const logChannel = message.channel.find(ch => ch.name === 'mod-log' || 'mod-logs' || 'logs');
+        const logChannel = message.guild.channels.find(ch => ch.name === 'mod-log' || 'mod-logs' || 'logs');
 
         // Member-User
         let member = args.member;
