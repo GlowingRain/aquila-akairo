@@ -20,7 +20,7 @@ class ReadyListener extends Listener {
         let aquila_ascii = ascii_text_generator(aquila, "2");
 
         // Linezzz
-        let line = '-'
+        let line = '-';
 
         // Some data to log with Aquila 
         let AquilaData = [

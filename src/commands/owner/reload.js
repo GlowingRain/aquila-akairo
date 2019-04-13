@@ -1,6 +1,5 @@
 const { Command } = require('discord-akairo');
-const { embedMessage, randomValue } = require('../../utils/tools');
-const colors = require('../../utils/colors');
+const { embedMessage } = require('../../utils/tools');
 
 class ReloadCommand extends Command {
     constructor() {
