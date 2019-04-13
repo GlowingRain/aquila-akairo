@@ -36,7 +36,7 @@ class BanCommand extends Command {
 
         // Parsing
         if (!logChannel) return errorMessage('El canal de logs no existe o no tengo acceso a él.', message);
-        if (member.hasPermmision('MANAGE_MESSAGES')) return errorMessage('No puedo interactuar con ese miembro', message);
+        if (member.hasPermission('MANAGE_MESSAGES')) return errorMessage('No puedo interactuar con ese miembro', message);
 
         // Text array
         const textArray = [
