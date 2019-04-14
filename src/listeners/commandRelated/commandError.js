@@ -1,7 +1,7 @@
 const { Listener } = require('discord-akairo');
 const chalk = require('chalk');
 const moment = require('moment');
-const { errorMessage } = require('../utils/errors');
+const { errorMessage } = require('../../utils/errors');
 
 class CommandErrorListener extends Listener {
     constructor() {

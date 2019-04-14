@@ -1,5 +1,5 @@
 const { Listener } = require('discord-akairo');
-const { warnMessage } = require('../utils/errors');
+const { warnMessage } = require('../../utils/errors');
 const prettyMs = require('pretty-ms');
 
 class CommandCooldownListener extends Listener {
