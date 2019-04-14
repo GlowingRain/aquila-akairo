@@ -16,7 +16,9 @@ class SlapCommand extends Command {
                     id: 'user',
                     type: 'user'
                 }
-            ]
+            ],
+            cooldown: 5000,
+            ratelimit: 2
         });
     };
 

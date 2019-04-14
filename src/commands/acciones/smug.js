@@ -11,6 +11,8 @@ class SmugCommand extends Command {
         super('smug', {
             aliases: ['smug'],
             clientPermissions: ['EMBED_LINKS'],
+            cooldown: 5000,
+            ratelimit: 2
         });
     };
 
