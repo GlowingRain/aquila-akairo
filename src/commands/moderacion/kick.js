@@ -58,11 +58,11 @@ class KickCommand extends Command {
         await member.send(userEmbed)
             .then(() => {
                 successMessage(`${user.tag} ha sido expulsado con éxito.`, message);
-                // return member.kick(reason);
+                return member.kick(reason);
             })
             .catch(() => {
                 successMessage(`${user.tag} ha sido expulsado con éxito.`, message);
-                // return member.kick(reason);
+                return member.kick(reason);
             });
 
         LogChannel.send(LogEmbed);
