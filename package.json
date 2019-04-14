@@ -31,6 +31,7 @@
     "node-weeb": "^1.0.4",
     "nodejs-currency-converter": "^1.0.2",
     "ora": "^3.2.0",
+    "pretty-ms": "^4.0.0",
     "superagent": "^4.1.0",
     "table": "^5.2.3"
   }

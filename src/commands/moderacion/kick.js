@@ -1,18 +1,17 @@
 const { Command } = require('discord-akairo');
 const { RichEmbed } = require('discord.js');
-const { crimson } = require('../../utils/colors');
+const { orange } = require('../../utils/colors');
 const { errorMessage, successMessage } = require('../../utils/errors');
-const { randomValue } = require('../../utils/tools');
 
-class BanCommand extends Command {
+class KickCommand extends Command {
     constructor() {
-        super('ban', {
-            aliases: ['ban'],
+        super('kick', {
+            aliases: ['kick'],
+            split: 'sticky',
             args: [
                 {
                     id: 'member',
                     type: 'member',
-                    match: 'word'
                 },
                 {
                     id: 'reason',
@@ -21,8 +20,8 @@ class BanCommand extends Command {
                 }
             ],
             channelRestriction: 'guild',
-            clientPermissions: ['BAN_MEMBERS'],
-            userPermissions: ['BAN_MEMBERS']
+            clientPermissions: ['KICK_MEMBERS'],
+            userPermissions: ['KICK_MEMBERS']
         })
     }
 
@@ -40,46 +39,34 @@ class BanCommand extends Command {
         if (!member) return errorMessage('Debes mencionar a un usuario para banearlo.', message);
         if (member.hasPermission('MANAGE_MESSAGES')) return errorMessage('No puedo interactuar con ese usuario.', message);
 
-        // Text array
-        const textArray = [
-            ` ha lanzado el martillo sobre ${member.tag}`,
-            ` ha destruido a ${member.tag} con el martillo.`,
-            ` se mareó al intentar banear a ${member.tag}`,
-            ` hizo de las suyas y baneó a ${member}`,
-            ` lo hizo una vez más y amasó a ${member.tag} con el martillo.`,
-            ` hizo caso y baneó a ${member.tag}`,
-            ` hizo lo que tenía que hacer y baneó a ${member.tag}`
-        ];
-
         // Embeds
         const LogEmbed = new RichEmbed()
-            .setColor(crimson)
-            .setTitle('MODERACION - Ban')
+            .setColor(orange)
+            .setTitle('MODERACION - Expulsión')
             .setThumbnail(user.displayAvatarURL)
-            .setDescription(message.author + randomValue(textArray) + `\n\nID: ${member.id}`)
-            .addField('Razón', `${reason}`, true)
-            .addField('Canal', `<#${message.channel.id}>`, true)
+            .setDescription(`${message.author} ha expulsado a ${user.tag} en <#${message.channel.id}>` + `\n\nID: ${member.id}`)
+            .addField('Razón', `${reason}`)
             .setTimestamp(new Date());
 
         const userEmbed = new RichEmbed()
-            .setColor(crimson)
-            .setAuthor('Has sido baneado de Altair', `${user.displayAvatarURL}`)
+            .setColor(orange)
+            .setAuthor('Has sido expulsado de Altair', `${user.displayAvatarURL}`)
             .addField("Razón", `${reason}`, true)
             .addField("Mod/Admin", `${message.author.tag}`, true);
 
-        // Send then ban
+        // Send then kick
         await member.send(userEmbed)
             .then(() => {
-                successMessage(`${user.tag} ha sido baneado con éxito.`, message);
-                return member.ban(reason);
+                successMessage(`${user.tag} ha sido expulsado con éxito.`, message);
+                // return member.kick(reason);
             })
             .catch(() => {
-                successMessage(`${user.tag} ha sido baneado con éxito.`, message);
-                return member.ban(reason);
+                successMessage(`${user.tag} ha sido expulsado con éxito.`, message);
+                // return member.kick(reason);
             });
 
         LogChannel.send(LogEmbed);
     }
 }
 
-module.exports = BanCommand;
+module.exports = KickCommand;

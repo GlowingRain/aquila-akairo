@@ -1,6 +1,7 @@
 // Some useful things I defined in a utility file (see CommonUtil.js in the next Gist file)
 const { CommonUtil } = require('../../utils/CommandUtil');
 const colors = require('../../utils/colors');
+const prettyMs = require('pretty-ms');
 
 // Mine
 const { errorMessage, warnMessage } = require('../../utils/errors');
@@ -71,6 +72,10 @@ class HelpCommand extends Command {
             embed.addField('Alias', `\`${cmd.aliases.join(', ')}\``, true);
         }
 
+        if (cmd.cooldown && cmd.ratelimit) {
+            embed.addField('Cooldown', `${cmd.ratelimit} usos cada ${prettyMs(cmd.cooldown)}`, true)
+        }
+
         if (cmd.channelRestriction) {
             embed.addField('Restricción', `\`${channels[cmd.channelRestriction]}\``, true);
         }
@@ -101,7 +106,7 @@ class HelpCommand extends Command {
                     message.react('✅');
                     message.awaitReactions(filter, { time: 5000 })
                         .catch(() => {
-                            errorMessage('Se ha excedido el tiempo límite, por favor contacta al dueño, revisa los permisos o intenta más tarde.', message)
+                            errorMessage('Se ha excedido el tiempo límite, por favor contacta al desarrollador o intenta más tarde.', message)
                         });
 
                     return message.author.send(`Aquí hay información sobre el comando **\`${key}\`**`, { embed: this._getCmdInfo(message, cmd) })
