@@ -52,7 +52,8 @@ class KickCommand extends Command {
             .setColor(orange)
             .setAuthor('Has sido expulsado de Altair', `${user.displayAvatarURL}`)
             .addField("Razón", `${reason}`, true)
-            .addField("Mod/Admin", `${message.author.tag}`, true);
+            .addField("Mod/Admin", `${message.author.tag}`, true)
+            .setTimestamp(new Date());
 
         // Send then kick
         await member.send(userEmbed)

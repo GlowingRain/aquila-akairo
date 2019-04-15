@@ -6,6 +6,11 @@ module.exports.randomValue = (array) => {
     return array[Math.floor(Math.random() * array.length)];
 };
 
+module.exports.randomObject = (obj) => {
+    var keys = Object.keys(obj)
+    return obj[keys[keys.length * Math.random() << 0]];
+};
+
 module.exports.deleteMessageAfterSent = (message, content, interval) => {
     // String to integer (string => number)
     let ms = parseInt(interval);
@@ -27,7 +32,7 @@ module.exports.embedMessage = (message, content, hex) => {
     } else {
         embed.setColor(0x36393E);
     }
-    
+
     return message.channel.send({ embed });
 };
 

@@ -65,7 +65,8 @@ class BanCommand extends Command {
             .setColor(crimson)
             .setAuthor('Has sido baneado de Altair', `${user.displayAvatarURL}`)
             .addField("Razón", `${reason}`, true)
-            .addField("Mod/Admin", `${message.author.tag}`, true);
+            .addField("Mod/Admin", `${message.author.tag}`, true)
+            .setTimestamp(new Date());
 
         // Send then ban
         await member.send(userEmbed)
