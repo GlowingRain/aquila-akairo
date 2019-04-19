@@ -8,7 +8,8 @@ class ReloadCommand extends Command {
             description: 'Recarga los módulos de Aquila',
             args: [
                 {
-                    id: 'commandID'
+                    id: 'commandID',
+                    type: 'command'
                 },
                 {
                     id: 'all',
