@@ -3,10 +3,10 @@ const { RichEmbed } = require('discord.js');
 const { errorMessage, successMessage } = require('../../utils/errors');
 const colors = require('../../utils/colors');
 
-class MuteCommand extends Command {
+class UnmuteCommand extends Command {
     constructor() {
-        super('mute', {
-            aliases: ['mute'],
+        super('unmute', {
+            aliases: ['unmute'],
             args: [
                 {
                     id: 'member',
@@ -24,14 +24,12 @@ class MuteCommand extends Command {
     }
 
     async exec(message, args) {
-        // Args
+        // const logChannel = this.client.channels.get('566715176716468224');
         let memberToMute = args.member;
         let reason = args.reason || 'No se especificó una razón';
+        
+        const logChannel = this.client.channels.get('568682783803703299');
 
-        // Channel
-        const logChannel = this.client.channels.get('566715176716468224');
-
-        // Role
         let mutedRole = message.guild.roles.find(r => r.name === 'Silenciado');
 
         if (!mutedRole) {
@@ -60,34 +58,32 @@ class MuteCommand extends Command {
                 });
         };
 
-        // Parsing
-        if (!memberToMute) return errorMessage('Tienes que mencionar a alguien para mutearlo.', message);
-        if (memberToMute.hasPermission('MANAGE_MESSAGES')) return errorMessage('No puedo interactuar con ese usuario.', message);
+        if (!memberToMute.roles.has(mutedRole.id)) return errorMessage('Ese usuario no está silenciado.', message);
+        if (!memberToMute) return errorMessage('Tienes que mencionar a alguien para desmutearlo.', message);
 
-        // Embeds
         const logEmbed = new RichEmbed()
-            .setTitle('MODERACION - Muteo')
+            .setTitle('MODERACION - Desmuteo')
             .setColor(colors['yellow'])
             .setThumbnail(`${memberToMute.user.displayAvatarURL}`)
-            .setDescription(`${message.author} ha silenciado a ${memberToMute.user.tag} por tiempo indefinido en <#${message.channel.id}>.`)
+            .setDescription(`${message.author} ha desmuteado a ${memberToMute.user.tag} en <#${message.channel.id}>.`)
             .addField('Razón', `${reason}`)
             .setTimestamp(new Date());
 
         const mutedEmbed = new RichEmbed()
-            .setAuthor('Has sido muteado por un tiempo indefinido en Altair', memberToMute.user.displayAvatarURL)
+            .setAuthor('Has sido desmuteado en Altair', memberToMute.user.displayAvatarURL)
             .setColor(colors['yellow'])
             .addField('Razón', `${reason}`)
             .addField('Mod/Admin', `${message.author.tag}`)
             .setTimestamp(new Date());
 
-        // Mute then send to the user & log
-        await memberToMute.addRole(mutedRole.id, reason);
+        await memberToMute.removeRole(mutedRole.id);
 
-        successMessage(`El usuario ${memberToMute} ha sido silenciado con éxito.`, message);
+        successMessage(`El usuario ${memberToMute} ha sido desmuteado con éxito.`, message);
 
         logChannel.send(logEmbed);
         memberToMute.send(mutedEmbed).catch(() => O_o);
     }
 }
 
-module.exports = MuteCommand;
+module.exports = UnmuteCommand;
+
