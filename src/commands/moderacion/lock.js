@@ -45,4 +45,3 @@ class LockCommand extends Command {
 }
 
 module.exports = LockCommand;
-
