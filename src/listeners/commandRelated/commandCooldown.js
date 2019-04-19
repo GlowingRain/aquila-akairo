@@ -11,7 +11,7 @@ class CommandCooldownListener extends Listener {
     }
 
     exec(message, command, remaining) {
-        warnMessage(`Debes esperar \`${prettyMs(remaining)}\` antes de usar el comando \`${command}\``, message);
+        warnMessage(`Debes esperar \`${prettyMs(remaining)}\` antes de usar ese comando.`, message);
     }
 }
 
